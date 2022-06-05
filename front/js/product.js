@@ -73,6 +73,8 @@ function popupConfirmation () {
     }
 }
 
+// Au clic 
+
 addToCart.onclick = () => {
 
     let panier = recupererPanier ();

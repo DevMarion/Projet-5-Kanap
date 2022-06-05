@@ -1,5 +1,12 @@
 let panier = recupererPanier ();
 
+/**
+ * Demande des produits via l'API et fetch
+ * @param { String } http://localhost:3000/api/products
+ * @param { String } fetch
+ * @return { Promise }
+ */
+
 fetch("http://localhost:3000/api/products")
  .then(function (response) {
      if (response.ok) {
@@ -21,6 +28,8 @@ fetch("http://localhost:3000/api/products")
  });
 
 commander();
+
+// Fonction qui permet la création des différents articles sélectionnés par l'utilisateur
 
 function creationArticle(data) {
     if (panier.length == 0) {
@@ -150,6 +159,8 @@ function creationArticle(data) {
     }
 }
 
+// Calcul de la quantité totale des articles
+
 function totalQuantite () {
     let totalQ = 0;
    
@@ -166,6 +177,8 @@ function totalQuantite () {
         totalQuantite.textContent = totalQ;
     }
 }
+
+// Calcul du prix total de la commande
 
 function totalPrix (data) {
     let totalP = 0;
@@ -187,6 +200,8 @@ function totalPrix (data) {
         }
     }    
 }
+
+// Supression des articles
 
 function supprimerProduit() {
 
@@ -340,6 +355,8 @@ function validationEmail () {
     }
 }
 
+// Fonction qui permet de finaliser la commande
+
 function commander () {
 
     let commande = document.getElementById("order");
@@ -362,6 +379,8 @@ function commander () {
         
     })
 }
+
+// Fonction qui envoie les données demandées par le backend
 
 function EnvoyerDonnees () {
 
