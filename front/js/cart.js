@@ -255,11 +255,10 @@ function modifierQuantite() {
             }
 
             if (quantiteChangement === 0|| quantiteChangement < 0 || quantiteChangement > 100) {
-                if(confirm("Veuillez renseigner une quantité supérieure à 0 et inférieure à 100 ")) {
+                alert("Veuillez renseigner une quantité supérieure à 0 et inférieure à 100 ")
                     window.location.reload();  
                     return 0;
                 }
-            }
 
             localStorage.setItem("panier", JSON.stringify(panier));
             window.location.reload();
@@ -271,14 +270,14 @@ function modifierQuantite() {
 
 // Les regex
 
-let nomRegExp = new RegExp("^[a-zA-Z]+[\-']?[[a-zA-Z]+[\-']?]*[a-zA-Z]+$");
+let nomRegExp = new RegExp("^[a-zA-Z]+[\-']?[[a-zA-Z\é\è\ê\ë\ï\ÿ\ô\â]+[\-']?]*[a-zA-Z\é\è\ê\ë\ï\ÿ\ô\â]+$");
 let emailRegExp = new RegExp("^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$");
 
-// Validation du format du prénom
+// Validation du format du prénom  ^[A-Z][\p{L}-]*$
 
 let prenom = document.getElementById("firstName");
 
-prenom.addEventListener("change", function () {
+prenom.addEventListener("input", function () {
     validationPrenom(this);
 });
 
@@ -302,7 +301,7 @@ function validationPrenom () {
 
 let nom = document.getElementById("lastName");
 
-nom.addEventListener("change", function () {
+nom.addEventListener("input", function () {
     validationNom(this);
 });
 
@@ -326,7 +325,7 @@ function validationNom () {
 
 let ville = document.getElementById("city");
 
-ville.addEventListener("change", function () {
+ville.addEventListener("input", function () {
     validationVille(this);
 });
 
@@ -350,7 +349,7 @@ function validationVille () {
 
 let email = document.getElementById("email");
 
-email.addEventListener("change", function () {
+email.addEventListener("input", function () {
     validationEmail(this);
 });
 
@@ -386,8 +385,8 @@ function commander () {
         if (!nomRegExp.test(firstName.value) || !nomRegExp.test(lastName.value) || !nomRegExp.test(city.value) || !emailRegExp.test(email.value) || address.value === "") {
             alert("Veuillez remplir tous les champs du formulaire");
         }
-
         else {
+
             EnvoyerDonnees ();
             
         }
