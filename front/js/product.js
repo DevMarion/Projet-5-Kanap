@@ -87,10 +87,13 @@ addToCart.onclick = () => {
 
     // alerte si la couleur ou la quantité n'est pas sélectionné par l'acheteur
 
-    if (product.quantite === 0|| product.quantite > 100 || product.couleur === "") {
-        return alert("Veuillez renseigner une quantité inférieure à 100 et / ou sélectionner une couleur");
+    if (product.quantite === 0|| product.quantite < 0 || product.quantite > 100 || product.couleur === "" ) {
+        if(confirm('Veuillez renseigner une quantité supérieure à 0 et inférieure à 100 et / ou sélectionner une couleur')){
+            window.location.reload();  
+            return 0;
+        }
     }
-
+    
     // recherche si produit déjà dans le localStorage
 
     let chercherProduit = panier.find(p => p.id === product.id && p.couleur === product.couleur);
